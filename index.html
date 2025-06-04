@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Minha Princesa</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Comic+Neue:wght@700&display=swap');
+
+  :root {
+    --pink: #ff6978;
+    --light-pink: #ffc1cc;
+    --background: #fff0f5;
+    --text-color: #d6336c;
+    --strawberry-red: #ea4c46;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    background: var(--background);
+    font-family: 'Comic Neue', cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  .message-container {
+    display: flex;
+    align-items: center;
+    background: var(--light-pink);
+    border: 3px solid var(--pink);
+    border-radius: 25px;
+    box-shadow: 0 0 15px var(--pink);
+    padding: 15px 25px;
+    max-width: 100%;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .marquee-wrapper {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee {
+    display: inline-block;
+    font-family: 'Sacramento', cursive;
+    font-size: 3.2rem;
+    color: var(--text-color);
+    padding-left: 100%;
+    animation: marqueeAnim 10s linear infinite;
+  }
+
+  @keyframes marqueeAnim {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .icons {
+    display: flex;
+    gap: 16px;
+    margin-left: 20px;
+  }
+
+  .heart-icon, .strawberry-icon {
+    font-size: 3rem;
+    cursor: default;
+    user-select: none;
+    animation: pulse 2.4s infinite ease-in-out;
+    filter: drop-shadow(0 0 4px #d64764);
+  }
+
+  .heart-icon {
+    color: var(--pink);
+  }
+
+  .strawberry-icon {
+    color: var(--strawberry-red);
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 4px #d64764);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 8px #d64764);
+      opacity: 0.85;
+    }
+  }
+
+  /* Responsividade para celulares */
+  @media (max-width: 480px) {
+    .message-container {
+      padding: 12px 15px;
+      max-width: 100%;
+    }
+    .marquee {
+      font-size: 2rem;
+      padding-left: 70%;
+    }
+    .icons {
+      gap: 12px;
+      margin-left: 12px;
+    }
+    .heart-icon, .strawberry-icon {
+      font-size: 2.2rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="message-container" role="main" aria-label="Mensagem de saudade com animação e ícones fofos">
+    <div class="marquee-wrapper" aria-hidden="true">
+      <div class="marquee">Só para avisar que estou com saudade</div>
+    </div>
+    <div class="icons" aria-hidden="true">
+      <span class="heart-icon" title="Coração">❤️</span>
+      <span class="strawberry-icon" title="Morango">🍓</span>
+    </div>
+  </div>
+</body>
+</html>
