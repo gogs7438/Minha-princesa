@@ -64,7 +64,7 @@
     background: linear-gradient(135deg, #b5179e, #f72585);
     transform: scale(1.05);
   }
-  .kiss-emoji, .mouth-emoji {
+  .kiss-emoji {
     font-size: 4rem;
     color: #f72585;
     margin-top: 16px;
@@ -73,7 +73,7 @@
     transition: opacity 0.4s ease, transform 0.4s ease;
     user-select: none;
   }
-  .kiss-emoji.show, .mouth-emoji.show {
+  .kiss-emoji.show {
     opacity: 1;
     transform: translateY(0);
   }
@@ -212,26 +212,22 @@
 
 <main role="main" class="card">
   <h1>Bom Dia, Meu Amor! <span class="heart" aria-hidden="true">❤️</span></h1>
-  <button type="button" id="kissBtn">Um beijo para você</button>
+  <button type="button" id="kissBtn">Ganhe seu beijo</button>
   <div id="kissEmoji" class="kiss-emoji" aria-hidden="true">💋</div>
-  <div id="mouthEmoji" class="mouth-emoji" aria-hidden="true">👄</div>
   <div id="happyMessage" class="happy-message" aria-hidden="true">Feliz Dia dos Namorados</div>
 </main>
 
 <script>
   const button = document.getElementById('kissBtn');
   const kissEmoji = document.getElementById('kissEmoji');
-  const mouthEmoji = document.getElementById('mouthEmoji');
   const happyMessage = document.getElementById('happyMessage');
 
   button.addEventListener('click', () => {
     kissEmoji.classList.add('show');
-    mouthEmoji.classList.add('show');
     happyMessage.classList.add('show');
 
     setTimeout(() => {
       kissEmoji.classList.remove('show');
-      mouthEmoji.classList.remove('show');
       happyMessage.classList.remove('show');
     }, 3000);
   });
