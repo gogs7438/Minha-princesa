@@ -1,237 +1,123 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bom Dia - Dia dos Namorados</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explosión de Amor</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      cursor: pointer;
+    }canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f8cdd6 0%, #f4a9b7 100%);
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-  }
-  .card {
-    background: rgba(255 255 255 / 0.9);
-    border-radius: 24px;
-    box-shadow: 0 12px 32px rgba(244,169,183,0.3);
-    max-width: 480px;
-    width: 100%;
-    padding: 32px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  h1 {
-    font-size: 2.8rem;
-    color: #d94f72;
-    margin-bottom: 32px;
-    font-weight: 700;
-  }
-  .heart {
-    color: #f43f5e;
-    font-size: 3rem;
-    animation: beat 1.2s infinite alternate ease-in-out;
-    user-select: none;
-  }
-  @keyframes beat {
-    0% {transform: scale(1);}
-    100% {transform: scale(1.2);}
-  }
-  button {
-    background: linear-gradient(135deg, #f72585, #b5179e);
-    border: none;
-    color: white;
-    padding: 14px 42px;
-    font-size: 1.125rem;
-    border-radius: 9999px;
-    cursor: pointer;
-    font-weight: 600;
-    box-shadow: 0 4px 16px rgb(181 23 158 / 0.3);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  button:hover {
-    background: linear-gradient(135deg, #b5179e, #f72585);
-    transform: scale(1.05);
-  }
-  .kiss-emoji {
-    font-size: 4rem;
-    color: #f72585;
-    margin-top: 16px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    user-select: none;
-  }
-  .kiss-emoji.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .happy-message {
-    font-size: 1.5rem;
-    color: #b5179e;
-    font-weight: 700;
-    margin-top: 16px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-  .happy-message.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
 
-  .background-hearts {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    overflow: visible;
-    z-index: 0;
-  }
-  .heart-floating {
-    position: absolute;
-    color: #f72585cc;
-    font-size: 18px;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    opacity: 0.8;
-    user-select: none;
-  }
-  .heart-floating:nth-child(1) {
-    left: 10%;
-    animation-name: floatUp1;
-    animation-duration: 7s;
-    font-size: 22px;
-  }
-  .heart-floating:nth-child(2) {
-    left: 25%;
-    animation-name: floatUp2;
-    animation-duration: 9s;
-    font-size: 18px;
-    animation-delay: 2s;
-  }
-  .heart-floating:nth-child(3) {
-    left: 40%;
-    animation-name: floatUp1;
-    animation-duration: 6.5s;
-    font-size: 20px;
-    animation-delay: 5s;
-  }
-  .heart-floating:nth-child(4) {
-    left: 55%;
-    animation-name: floatUp2;
-    animation-duration: 10s;
-    font-size: 15px;
-    animation-delay: 1s;
-  }
-  .heart-floating:nth-child(5) {
-    left: 70%;
-    animation-name: floatUp1;
-    animation-duration: 8.5s;
-    font-size: 18px;
-    animation-delay: 3s;
-  }
-  .heart-floating:nth-child(6) {
-    left: 85%;
-    animation-name: floatUp2;
-    animation-duration: 7.5s;
-    font-size: 21px;
-    animation-delay: 4s;
-  }
-  @keyframes floatUp1 {
-    0% {transform: translateY(100vh) scale(1); opacity: 0;}
-    10% {opacity: 0.8;}
-    100% {transform: translateY(-20vh) scale(1.4); opacity: 0;}
-  }
-  @keyframes floatUp2 {
-    0% {transform: translateY(110vh) scale(1); opacity: 0;}
-    10% {opacity: 0.7;}
-    100% {transform: translateY(-10vh) scale(1.3); opacity: 0;}
-  }
+.center-message {
+  font-family: 'Courier New', monospace;
+  color: #ff69b4;
+  font-size: 3rem;
+  text-align: center;
+  opacity: 0.8;
+}
 
-  .kiss-floating {
-    position: absolute;
-    color: #f72585cc;
-    font-size: 22px;
-    animation-name: fallDown;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    opacity: 0.8;
-    user-select: none;
-  }
-  @keyframes fallDown {
-    0% {transform: translateY(-10vh) scale(1); opacity: 0;}
-    10% {opacity: 0.9;}
-    100% {transform: translateY(110vh) scale(1.2); opacity: 0;}
-  }
-
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 24px;
-    }
-    button {
-      padding: 12px 28px;
-      font-size: 1rem;
-    }
-    .happy-message {
-      font-size: 1.25rem;
-    }
-  }
-</style>
+  </style>
 </head>
-<body>
+<body><canvas id="canvas"></canvas>
 
-<div class="background-hearts" aria-hidden="true">
-  <span class="heart-floating" style="top: 110vh;">❤️</span>
-  <span class="heart-floating" style="top: 120vh;">❤️</span>
-  <span class="heart-floating" style="top: 115vh;">❤️</span>
-  <span class="heart-floating" style="top: 108vh;">❤️</span>
-  <span class="heart-floating" style="top: 122vh;">❤️</span>
-  <span class="heart-floating" style="top: 118vh;">❤️</span>
+<div class="overlay">
+  <div class="center-message">Moranguinho 🍓🫶</div>
+</div><script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  <span class="kiss-floating" style="left: 15%; animation-duration: 8s; animation-delay: 0s;">💋</span>
-  <span class="kiss-floating" style="left: 35%; animation-duration: 9s; animation-delay: 2s;">💋</span>
-  <span class="kiss-floating" style="left: 55%; animation-duration: 7.5s; animation-delay: 4s;">💋</span>
-  <span class="kiss-floating" style="left: 75%; animation-duration: 10s; animation-delay: 1s;">💋</span>
-  <span class="kiss-floating" style="left: 85%; animation-duration: 9.5s; animation-delay: 3s;">💋</span>
-</div>
+  const text = "TE AMO";
+  const fontSize = 16;
+  const columns = Math.floor(canvas.width / (fontSize * 4));
+  const drops = new Array(columns).fill(1);
 
-<main role="main" class="card">
-  <h1>Bom Dia, Meu Amor! <span class="heart" aria-hidden="true">❤️</span></h1>
-  <button type="button" id="kissBtn">Ganhe seu beijo</button>
-  <div id="kissEmoji" class="kiss-emoji" aria-hidden="true">💋</div>
-  <div id="happyMessage" class="happy-message" aria-hidden="true">Feliz Dia dos Namorados</div>
-</main>
+  ctx.font = fontSize + "px monospace";
 
-<script>
-  const button = document.getElementById('kissBtn');
-  const kissEmoji = document.getElementById('kissEmoji');
-  const happyMessage = document.getElementById('happyMessage');
+  // Dibujo estilo Matrix
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  button.addEventListener('click', () => {
-    kissEmoji.classList.add('show');
-    happyMessage.classList.add('show');
+    ctx.fillStyle = "#ff69b4";
+    for (let i = 0; i < drops.length; i++) {
+      const x = i * fontSize * 4;
+      const y = drops[i] * fontSize;
+      ctx.fillText(text, x, y);
 
-    setTimeout(() => {
-      kissEmoji.classList.remove('show');
-      happyMessage.classList.remove('show');
-    }, 3000);
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+
+      drops[i]++;
+    }
+  }
+
+  // Partículas "TE AMO" al hacer clic
+  let particles = [];
+
+  canvas.addEventListener('click', (e) => {
+    for (let i = 0; i < 20; i++) {
+      particles.push({
+        x: e.clientX,
+        y: e.clientY,
+        vx: (Math.random() - 0.5) * 4,
+        vy: (Math.random() - 0.5) * 4,
+        alpha: 1,
+        size: fontSize + Math.random() * 8
+      });
+    }
   });
-</script>
 
-</body>
+  function drawParticles() {
+    particles.forEach((p, index) => {
+      ctx.globalAlpha = p.alpha;
+      ctx.font = p.size + "px monospace";
+      ctx.fillStyle = "#ff007f";
+      ctx.fillText("TE AMO", p.x, p.y);
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= 0.01;
+      if (p.alpha <= 0) {
+        particles.splice(index, 1);
+      }
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function animate() {
+    drawMatrix();
+    drawParticles();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script></body>
 </html>
